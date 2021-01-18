@@ -15,6 +15,8 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         defaultPos = transform.localPosition;
         directionNormalized = defaultPos.normalized;
         parentTransform = transform.parent;

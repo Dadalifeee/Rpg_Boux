@@ -11,6 +11,7 @@ public class MonsterMgr : MonoBehaviour
     public int life = 3;
     bool isDead = false;
     bool canAttack = true;
+    public bool isBoss = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,12 +28,12 @@ public class MonsterMgr : MonoBehaviour
             CheckIsDead();
             StartCoroutine("AttackPlayer");
         }
-//        if (other.gameObject.name == "RPGHeroHP")
-//        {
-//            life -= 10;
-//            print("-10")
-//;            CheckIsDead();
-//        }
+       if (other.gameObject.name == "SpellMisc" || other.gameObject.name == "SpellFire" || other.gameObject.name == "SpellIce")
+        {
+            life -= 10;
+            print("magie -10");
+            CheckIsDead();
+        }
     }
 
     public void CheckIsDead()
@@ -45,11 +46,20 @@ public class MonsterMgr : MonoBehaviour
             Destroy(this.gameObject, 3);
             GameObject go2 = Instantiate(diedParticule, transform.position, Quaternion.identity);
             Destroy(go2, 2);
-            if (Random.Range(0, 100) > 50)
+            if (!isBoss)
             {
-                GameObject loot = Instantiate(GameManager.Instance.lootSlime[Random.Range(0, 2)], transform.position, Quaternion.identity);
+                if (Random.Range(0, 100) > 50)
+                {
+                    GameObject loot = Instantiate(GameManager.Instance.lootSlime[Random.Range(0, 2)], transform.position, Quaternion.identity);
+                    loot.transform.position += Vector3.up;
+                    loot.name = "Fiole";
+                }
+            }
+            else
+            {
+                GameObject loot = Instantiate(GameManager.Instance.oeil, transform.position, Quaternion.identity);
                 loot.transform.position += Vector3.up;
-                loot.name = "Fiole";
+                loot.name = "oeil";
             }
         }
     }

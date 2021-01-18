@@ -12,6 +12,7 @@ public class CharacterCollision : MonoBehaviour
     public GameObject sword;
     public GameObject shield;
     public RectTransform lifeBar;
+    bool quest2done = false;
     private void OnTriggerEnter(Collider other)
     {
         // Declencher el dialogue
@@ -29,8 +30,22 @@ public class CharacterCollision : MonoBehaviour
                 dialTxt.GetComponent<TextMeshProUGUI>().text = "Pour passer frerot il te faut une épée et un bouclier cherche jeune, dehors les monstres sont méchants.";
             }
         }
+        if (other.gameObject.name == "TriggerDialogue2")
+        {
+            if (!quest2done)
+            {
+                dial.SetActive(true);
+                dialTxt.GetComponent<TextMeshProUGUI>().text = "Récupére un oeuil de dragon fils bonne chance.";
+            }
+            else
+            {
+                dial.SetActive(true);
+                dialTxt.GetComponent<TextMeshProUGUI>().text = "GG la zone woula t fort tiens voila l'oseille pour tes efforts.";
+                GameManager.Instance.or += 10;
+            }
+        }
 
-        if(other.gameObject.name == "Sword_pick")
+        if (other.gameObject.name == "Sword_pick")
         {
             Destroy(other.gameObject);
             sword.SetActive(true);
@@ -47,7 +62,13 @@ public class CharacterCollision : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if(other.gameObject.tag == "Mob")
+        if (other.gameObject.name == "oeil")
+        {
+            quest2done = true;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Mob")
         {
             GameManager.Instance.life--;
             print("Ma vie : "+ GameManager.Instance.life);
@@ -56,6 +77,11 @@ public class CharacterCollision : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
+        }
+
+        if(other.gameObject.name == "Ocean")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // Coroutine pour masquer dialogue

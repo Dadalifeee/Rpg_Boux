@@ -61,6 +61,7 @@ public class CharacterCtrl : MonoBehaviour
 
             if (Input.GetButton("Jump") && canMove)
             {
+                print("jump");
                 moveDirection.y = jumpSpeed;
             }
         }

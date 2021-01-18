@@ -7,6 +7,7 @@ public class CharacterSpells : MonoBehaviour
     public GameObject[] spells;
     public AudioClip[] magicSfx;
     private AudioSource audioSource;
+    private bool CanSpellAtack = true;
 
     private void Start()
     {
@@ -15,46 +16,69 @@ public class CharacterSpells : MonoBehaviour
 
     private void Update()
     {
-        Spell1();
-        Spell2();
+        SpellMisc();
+        SpellFire();
+        Spellheal();
+        SpellIce();
     }
 
-    public void Spell1()
+    public void SpellMisc()
     {
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") && CanSpellAtack)
+        {
+            audioSource.PlayOneShot(magicSfx[3]);
+            // GameObject go = Instantiate(spells[0], new Vector3(transform.position.x, transform.position.y, transform.position.z + 1));
+            GameObject go = Instantiate(spells[0], transform.position + (transform.forward * 5), transform.rotation);
+            go.transform.position += Vector3.up;
+            go.name = "SpellMisc";
+            CanSpellAtack = false;
+            StartCoroutine("AttackSpell");
+            Destroy(go, 3);
+        }
+    }
+    public void SpellFire()
+    {
+        if (Input.GetKey("e") && CanSpellAtack)
         {
             audioSource.PlayOneShot(magicSfx[0]);
-            GameObject go = Instantiate(spells[0], new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Quaternion.identity);
+            GameObject go = Instantiate(spells[1], transform.position + (transform.forward * 5), transform.rotation);
+            go.transform.position += Vector3.up;
+            go.name = "SpellFire";
+            CanSpellAtack = false;
+            StartCoroutine("AttackSpell");
             Destroy(go, 3);
-            GetComponent<SphereCollider>().enabled = true;
-            StartCoroutine("DisableCollider");
         }
     }
-    public void Spell2()
+    public void Spellheal()
     {
-        if (Input.GetKey("e"))
+        if (Input.GetKey("x") && CanSpellAtack)
         {
-            print("oui");
             audioSource.PlayOneShot(magicSfx[1]);
-            GameObject go = Instantiate(spells[1], new Vector3(0, transform.position.y, 1), Quaternion.identity);
+            GameObject go = Instantiate(spells[4], transform.position,transform.rotation); ;
+            go.name = "Spellheal";
+            CanSpellAtack = false;
+            print("avant  : " + GameManager.Instance.life);
+            GameManager.Instance.life += 5;
+            print("apres : "+GameManager.Instance.life);
+            StartCoroutine("AttackSpell");
             Destroy(go, 3);
-            GetComponent<SphereCollider>().enabled = true;
-            StartCoroutine("DisableCollider");
         }
     }
-    public void Spell3()
+    public void SpellIce()
     {
-        GameObject go = Instantiate(spells[2], transform.position, Quaternion.identity);
-        Destroy(go, 3);
+        if (Input.GetKey("f") && CanSpellAtack)
+        {
+            audioSource.PlayOneShot(magicSfx[0]);
+            GameObject go = Instantiate(spells[3], transform.position + (transform.forward * 5), transform.rotation); ;
+            go.name = "SpellIce";
+            CanSpellAtack = false;
+            StartCoroutine("AttackSpell");
+            Destroy(go, 3);
+        }
     }
-    public void Spell4()
-    {
-        GameObject go = Instantiate(spells[3], transform.position, Quaternion.identity);
-        Destroy(go, 3);
-    }
-    IEnumerable DisableCollider()
+    IEnumerator AttackSpell()
     {
         yield return new WaitForSeconds(1);
-        GetComponent<SphereCollider>().enabled = false;
+        CanSpellAtack = true;
     }
 }

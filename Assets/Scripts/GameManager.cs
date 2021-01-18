@@ -30,10 +30,12 @@ public class GameManager : MonoBehaviour
     public int force = 10;
     public int def = 6;
     public int crit = 5;
+    public int or = 0;
     public int life = 10;
 
     // Loot
     public GameObject[] lootSlime;
+    public GameObject oeil;
 
 
     //fonction
