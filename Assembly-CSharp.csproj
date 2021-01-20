@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FBC89684-03E8-268B-F8EB-8DCECE18658E}</ProjectGuid>
+    <ProjectGuid>{82E8D758-1205-558E-F98D-67E167925C04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -108,6 +108,7 @@
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Utility\EnterWater.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Behaviors\LayersBehavior.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Utility\ScaleBonesFix.cs" />
+    <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Behaviors\SleepBehavior.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\Petal Particles - Cherry Petals\Demo Scene\Script\DemoScene.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Utility\LookAt.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Animal\AnimalAIControl.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Utility\BlendShapes.cs" />
-    <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\MonsterAIDragon.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
