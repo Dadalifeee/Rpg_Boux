@@ -24,7 +24,7 @@ public class CharacterSpells : MonoBehaviour
 
     public void SpellMisc()
     {
-        if (Input.GetKey("a") && CanSpellAtack)
+        if (Input.GetKeyUp(KeyCode.Alpha1) && CanSpellAtack)
         {
             audioSource.PlayOneShot(magicSfx[3]);
             // GameObject go = Instantiate(spells[0], new Vector3(transform.position.x, transform.position.y, transform.position.z + 1));
@@ -38,7 +38,7 @@ public class CharacterSpells : MonoBehaviour
     }
     public void SpellFire()
     {
-        if (Input.GetKey("e") && CanSpellAtack)
+        if (Input.GetKeyUp(KeyCode.Alpha2) && CanSpellAtack)
         {
             audioSource.PlayOneShot(magicSfx[0]);
             GameObject go = Instantiate(spells[1], transform.position + (transform.forward * 5), transform.rotation);
@@ -51,7 +51,7 @@ public class CharacterSpells : MonoBehaviour
     }
     public void Spellheal()
     {
-        if (Input.GetKey("x") && CanSpellAtack)
+        if (Input.GetKeyUp(KeyCode.Alpha3) && CanSpellAtack)
         {
             audioSource.PlayOneShot(magicSfx[1]);
             GameObject go = Instantiate(spells[4], transform.position,transform.rotation); ;
@@ -66,10 +66,11 @@ public class CharacterSpells : MonoBehaviour
     }
     public void SpellIce()
     {
-        if (Input.GetKey("f") && CanSpellAtack)
+        if (Input.GetKeyUp(KeyCode.Alpha4) && CanSpellAtack)
         {
             audioSource.PlayOneShot(magicSfx[0]);
             GameObject go = Instantiate(spells[3], transform.position + (transform.forward * 5), transform.rotation); ;
+            go.transform.position += Vector3.up;
             go.name = "SpellIce";
             CanSpellAtack = false;
             StartCoroutine("AttackSpell");

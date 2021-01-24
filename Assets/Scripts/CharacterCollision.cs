@@ -13,6 +13,7 @@ public class CharacterCollision : MonoBehaviour
     public GameObject shield;
     public RectTransform lifeBar;
     bool quest2done = false;
+    public CharacterCtrl character;
     private void OnTriggerEnter(Collider other)
     {
         // Declencher el dialogue
@@ -29,24 +30,30 @@ public class CharacterCollision : MonoBehaviour
                 dial.SetActive(true);
                 dialTxt.GetComponent<TextMeshProUGUI>().text = "Pour passer frerot il te faut une épée et un bouclier cherche jeune, dehors les monstres sont méchants.";
             }
+            // Coroutine pour masquer dialogue
+            StartCoroutine("HideDial");
         }
         if (other.gameObject.name == "TriggerDialogue2")
         {
             if (!quest2done)
             {
                 dial.SetActive(true);
-                dialTxt.GetComponent<TextMeshProUGUI>().text = "Récupére un oeuil de dragon fils bonne chance.";
+                dialTxt.GetComponent<TextMeshProUGUI>().text = "Récupére un oeil de dragon fils bonne chance.";
             }
             else
             {
                 dial.SetActive(true);
                 dialTxt.GetComponent<TextMeshProUGUI>().text = "GG la zone woula t fort tiens voila l'oseille pour tes efforts.";
                 GameManager.Instance.or += 10;
+                GameManager.Instance.SaveData();
             }
+            // Coroutine pour masquer dialogue
+            StartCoroutine("HideDial");
         }
 
         if (other.gameObject.name == "Sword_pick")
         {
+            character.canAttack = true;
             Destroy(other.gameObject);
             sword.SetActive(true);
         }
@@ -57,9 +64,16 @@ public class CharacterCollision : MonoBehaviour
             shield.SetActive(true);
         }
 
-        if (other.gameObject.name == "Fiole" || other.gameObject.name == "FioleBleue")
+        if (other.gameObject.name == "Fiole" )
         {
             Destroy(other.gameObject);
+            PlayerPrefs.SetInt("Fiole", PlayerPrefs.GetInt("Fiole") + 1);
+        }
+
+        if (other.gameObject.name == "FioleBleue")
+        {
+            Destroy(other.gameObject);
+            PlayerPrefs.SetInt("FioleBleue", PlayerPrefs.GetInt("FioleBleue") + 1);
         }
 
         if (other.gameObject.name == "oeil")
@@ -84,12 +98,11 @@ public class CharacterCollision : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        // Coroutine pour masquer dialogue
-        StartCoroutine("HideDial");
+        
     }
     IEnumerator HideDial()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         dial.SetActive(false);
     }
 }

@@ -41,7 +41,8 @@ public class MonsterMgr : MonoBehaviour
         if (life <= 0 && !isDead)
         {
             isDead = true;
-            GameManager.Instance.xp += 100;
+            GameManager.Instance.xp += 100 + Random.Range(1,100);
+            GameManager.Instance.SaveData();
             anim.SetTrigger("died");
             Destroy(this.gameObject, 3);
             GameObject go2 = Instantiate(diedParticule, transform.position, Quaternion.identity);

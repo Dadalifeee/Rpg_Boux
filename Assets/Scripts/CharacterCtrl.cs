@@ -21,6 +21,8 @@ public class CharacterCtrl : MonoBehaviour
     private CharacterController characterController;
     private Animator anim;
     private AudioSource audioSource;
+    public GameObject menupause;
+    private bool pause = false;
 
     public float jumpSpeed = 8.0f;
     public Transform playerCameraParent;
@@ -28,7 +30,7 @@ public class CharacterCtrl : MonoBehaviour
     public float lookXLimit = 60.0f;
 
     Vector2 rotation = Vector2.zero;
-    bool canAttack = true;
+    public bool canAttack = false;
 
     [HideInInspector]
     public bool canMove = true;
@@ -45,6 +47,37 @@ public class CharacterCtrl : MonoBehaviour
     {
         BaseMovement();
         Attack();
+        PauseMenue();
+    }
+
+    public void PauseMenue()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            pause = !pause;
+            if (pause)
+            {
+                Time.timeScale = 0f;
+                menupause.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                menupause.SetActive(false);
+            }
+        }
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
+
+    public void Resume()
+    {
+        pause = false;
+        Time.timeScale = 1;
+        menupause.SetActive(false);
     }
 
     public void BaseMovement()

@@ -146,9 +146,11 @@
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Effects\EffectModifier.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Animal\FollowTarget.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Utility\LookAt.cs" />
+    <Compile Include="Assets\Scripts\MonsterAIDragon.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Animal\AnimalAIControl.cs" />
     <Compile Include="Assets\Malbers Animations\Common\Scripts\Utility\BlendShapes.cs" />
-    <Compile Include="Assets\Scripts\MonsterAIDragon.cs" />
+    <Compile Include="Assets\Scripts\ColObjetMagasin.cs" />
+    <Compile Include="Assets\Scripts\ObjetBoutique.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -758,6 +760,9 @@
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.quicksearch">
+      <HintPath>Library\ScriptAssemblies\com.unity.quicksearch.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>

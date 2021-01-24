@@ -677,6 +677,9 @@
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.quicksearch">
+      <HintPath>Library\ScriptAssemblies\com.unity.quicksearch.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
